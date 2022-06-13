@@ -11,6 +11,10 @@ import javafx.scene.layout.VBox;
 
 public class CarnetsClientController {
     @FXML
+    private Label genre;
+    @FXML
+    private Label prenom;
+    @FXML
     private Label adresse;
     @FXML
     private Label nom;

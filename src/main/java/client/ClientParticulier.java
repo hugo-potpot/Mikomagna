@@ -38,7 +38,6 @@ public class ClientParticulier extends Client {
 		this.prenom = prenom;
 		this.genre = genre;
 	}
-
 	/**
 	 * Constructeur permettant d'initialiser un nouveau client de type particulier
 	 * en effectuant la saisie au clavier de son nom, son adresse, son prénom et son

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.CarnetsClientController">
@@ -33,15 +34,26 @@
       <VBox fx:id="boxCaracteristiquesObjet" prefHeight="200.0" prefWidth="100.0">
          <children>
             <BorderPane prefHeight="489.0" prefWidth="297.0">
-               <top>
-                  <VBox prefHeight="94.0" prefWidth="297.0" BorderPane.alignment="CENTER">
+               <center>
+                  <VBox prefHeight="237.0" prefWidth="297.0" BorderPane.alignment="CENTER">
                      <children>
+                        <HBox prefHeight="42.0" prefWidth="297.0">
+                           <children>
+                              <HBox prefHeight="18.0" prefWidth="298.0">
+                                 <children>
+                                    <Label fx:id="prenom" prefHeight="42.0" prefWidth="153.0" />
+                                    <Label fx:id="genre" prefHeight="45.0" prefWidth="154.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
                         <Label fx:id="nom" prefHeight="32.0" prefWidth="297.0" />
                         <Label fx:id="adresse" prefHeight="32.0" prefWidth="297.0" />
                         <Label fx:id="pointfidelite" prefHeight="32.0" prefWidth="297.0" />
+                        <Label fx:id="contact" prefHeight="32.0" prefWidth="297.0" />
                      </children>
                   </VBox>
-               </top>
+               </center>
             </BorderPane>
          </children></VBox>
    </items>
