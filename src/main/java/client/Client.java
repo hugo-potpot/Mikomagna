@@ -172,22 +172,6 @@ abstract public class Client {
 				+ "\nPoints Fidélité :\t" + pointsFidelite + "\nRistourne (%) :\t\t" + getRistourne();
 	}
 
-	/**
-	 * Méthode permettant de tester si deux clients sont les mêmes : deux clients
-	 * sont les mêmes si et seulement ils ont la même référence.
-	 * 
-	 * @param client Un objet supposé être instance de la classe Article et non
-	 *               null.
-	 */
-	@Override
-	public boolean equals(Object client) {
-		return ((Client) client).reference == reference;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(reference);
-	}
 
 	/**
 	 * Méthode permettant d'afficher les clients d'un tableau de clients.
@@ -203,6 +187,19 @@ abstract public class Client {
 					"----------------------------------------------------------------------------------------");
 		}
 
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Client client = (Client) o;
+		return reference == client.reference;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(reference);
 	}
 
 	/**

@@ -51,6 +51,19 @@ public class CarnetClients {
 		nbClients = 0;
 	}
 
+	public static CarnetClients defaultCarnet(){
+		CarnetClients carnetClients = new CarnetClients("SneakersCop");
+		carnetClients.ajouterClient(
+				new ClientParticulier("Cure", "30 rue des Tulipes, 62300 Lens, France", 0, "Hector", Genre.Homme));
+		carnetClients.ajouterClient(new ClientEntreprise("Peuplier and Co.",
+				"42 boulevard des Marguerites, 62300 Lens, France", 10, "Francis Chêne"));
+		carnetClients.ajouterClient(new ClientEntreprise("Charme and Co.", "22 impasse des Lilas, 62300 Lille, France",
+				500, "René Tilleul"));
+		carnetClients.ajouterClient(new ClientParticulier("Tournesol", "123 rue des narcisses, 62300 Lens, France",
+				2000, "Jonquille", Genre.Femme));
+		return carnetClients;
+	}
+
 	/**
 	 * Méthode testant si le carnet est plein.
 	 * 
@@ -92,9 +105,8 @@ public class CarnetClients {
 	 * @param client Un client (supposé non null).
 	 */
 	public void ajouterClient(Client client) {
-		if ((estPlein()) || (chercherIndiceClient(client) != -1))
-			return;
-		clients.set(nbClients++, client);
+		if (!clients.contains(client))
+			clients.add(client);
 	}
 
 	/**
@@ -104,12 +116,8 @@ public class CarnetClients {
 	 * @param client Un client (supposé non null).
 	 */
 	public void supprimerClient(Client client) {
-		int indice = chercherIndiceClient(client);
-		if (indice == -1)
-			return;
-		clients.set(indice, clients.get(nbClients-1));
-		clients.set(nbClients-1, null);
-		nbClients--;
+		if(clients.contains(client))
+			clients.remove(client);
 	}
 
 	/**
