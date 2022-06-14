@@ -1,6 +1,8 @@
 package javafx.controller;
 
 import client.CarnetClients;
+import client.ClientEntreprise;
+import client.ClientParticulier;
 import client.Genre;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -10,6 +12,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class NewCarnetsClientController {
 
@@ -36,7 +40,6 @@ public class NewCarnetsClientController {
 
     @FXML
     private Label Title;
-
     @FXML
     private Label labelPrename;
 
@@ -56,6 +59,19 @@ public class NewCarnetsClientController {
     void initialize(){
         SelectGenre.setItems(FXCollections.observableArrayList(Genre.values()));
         SelectType.setItems(FXCollections.observableArrayList("Particulier", "Entreprise"));
+        SelectType.getSelectionModel().selectedItemProperty().addListener((o,p,n) -> {
+            Title.setText("Client "+n);
+            if(n.equals("Particulier")){
+                SelectGenre.setVisible(true);
+                labelPrename.setText("Prenom : ");
+                InPrenom.setPromptText("Prenom");
+            }
+            else{
+                SelectGenre.setVisible(false);
+                InPrenom.setPromptText("Contact");
+                labelPrename.setText("Contact : ");
+            }
+        });
     }
 
     @FXML
@@ -64,9 +80,13 @@ public class NewCarnetsClientController {
     }
     @FXML
     void onActionValider() {
-
-
-
+        if(Title.getText().contains("Particulier")){
+            carnet.ajouterClient(new ClientParticulier(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()
+                    ,SelectGenre.getValue()));
+        }
+        else
+            carnet.ajouterClient(new ClientEntreprise(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()));
+        stage.setScene(mainscene);
     }
 
 }
