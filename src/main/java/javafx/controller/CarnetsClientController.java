@@ -19,7 +19,6 @@ import java.io.IOException;
 
 public class CarnetsClientController {
 
-    private Client clientTmp;
     private Stage stage;
 
     private Scene scene;
@@ -54,9 +53,6 @@ public class CarnetsClientController {
         this.stage= stage;
     }
 
-    public void setClientTmp(Client client){
-        this.clientTmp = client;
-    }
 
     void startEditor(Client client) throws IOException{
         try {

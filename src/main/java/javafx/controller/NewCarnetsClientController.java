@@ -87,9 +87,16 @@ public class NewCarnetsClientController {
     public void setClient(Client client) {
         this.clienttmp = client;
         SelectType.setDisable(true);
-        if(client instanceof ClientEntreprise)
+        InNom.setText(client.getNom());
+        InAdresse.setText(client.getAdresse());
+        InPoint.setText(Integer.toString(client.getPointsFidelite()));
+        if(client instanceof ClientEntreprise){
             SelectType.getSelectionModel().select("Entreprise");
+            InPrenom.setText(((ClientEntreprise) client).getContact());
+        }
         else
             SelectType.getSelectionModel().select("Particulier");
+            InPrenom.setText(((ClientParticulier) client).getPrenom());
+            SelectGenre.getSelectionModel().select(((ClientParticulier) client).getGenre());
     }
 }
