@@ -77,6 +77,7 @@ public class CarnetsClientController {
         controller.setStage(stage);
         controller.setMainscene(scene);
         controller.bind(carnet);
+
     }
 
     @FXML
