@@ -1,11 +1,7 @@
 package javafx.controller;
 
-import client.CarnetClients;
-import client.ClientEntreprise;
-import client.ClientParticulier;
-import client.Genre;
+import client.*;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -13,10 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.util.List;
-
 public class NewCarnetsClientController {
-
+    private Client clienttmp;
     private Scene mainscene;
 
     private Stage stage;
@@ -52,9 +46,10 @@ public class NewCarnetsClientController {
         this.mainscene = mainscene;
     }
 
-    public void bind(CarnetClients carnet){
+    public void setCarnet(CarnetClients carnet){
         this.carnet = carnet;
     }
+
     @FXML
     void initialize(){
         SelectGenre.setItems(FXCollections.observableArrayList(Genre.values()));
@@ -89,4 +84,12 @@ public class NewCarnetsClientController {
         stage.setScene(mainscene);
     }
 
+    public void setClient(Client client) {
+        this.clienttmp = client;
+        SelectType.setDisable(true);
+        if(client instanceof ClientEntreprise)
+            SelectType.getSelectionModel().select("Entreprise");
+        else
+            SelectType.getSelectionModel().select("Particulier");
+    }
 }

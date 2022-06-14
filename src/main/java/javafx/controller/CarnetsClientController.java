@@ -19,6 +19,7 @@ import java.io.IOException;
 
 public class CarnetsClientController {
 
+    private Client clientTmp;
     private Stage stage;
 
     private Scene scene;
@@ -53,30 +54,35 @@ public class CarnetsClientController {
         this.stage= stage;
     }
 
-    @FXML
-    void onActionAjouter(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../new-master-detail.fxml"));
-        Parent viewContent = fxmlLoader.load();
+    public void setClientTmp(Client client){
+        this.clientTmp = client;
+    }
 
-        Scene addClient = new Scene(viewContent);
-        stage.setScene(addClient);
-        NewCarnetsClientController controller = fxmlLoader.getController();
-        controller.setStage(stage);
-        controller.setMainscene(scene);
-        controller.bind(carnet);
+    void startEditor(Client client) throws IOException{
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../new-master-detail.fxml"));
+            Parent viewContent = fxmlLoader.load();
+
+            Scene addClient = new Scene(viewContent);
+            stage.setScene(addClient);
+            NewCarnetsClientController controller = fxmlLoader.getController();
+            controller.setStage(stage);
+            controller.setMainscene(scene);
+            if(client != null) controller.setClient(client);
+            controller.setCarnet(carnet);
+        }catch (IOException e){
+            System.err.println(e.getMessage());
+        }
+
+    }
+    @FXML
+    void onActionAjouter() throws IOException {
+        startEditor(null);
     }
 
     @FXML
     void onActionModifier(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../new-master-detail.fxml"));
-        Parent viewContent = fxmlLoader.load();
-
-        Scene addClient = new Scene(viewContent);
-        stage.setScene(addClient);
-        NewCarnetsClientController controller = fxmlLoader.getController();
-        controller.setStage(stage);
-        controller.setMainscene(scene);
-        controller.bind(carnet);
+        startEditor(listChoix.getSelectionModel().getSelectedItem());
 
     }
 
@@ -84,7 +90,7 @@ public class CarnetsClientController {
     void onActionSupprimer(ActionEvent event) {
         carnet.supprimerClient(listChoix.getSelectionModel().getSelectedItem());
     }
-    public void bind(CarnetClients carnet){
+    public void setCarnet(CarnetClients carnet){
         this.carnet = carnet;
         listChoix.setItems(carnet.GetList());
         listChoix.getSelectionModel().selectedItemProperty().addListener((o,p,n) ->{

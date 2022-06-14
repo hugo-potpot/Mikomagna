@@ -17,9 +17,6 @@
 package javafx;
 
 import client.CarnetClients;
-import client.ClientEntreprise;
-import client.ClientParticulier;
-import client.Genre;
 import javafx.application.Application;
 import javafx.controller.CarnetsClientController;
 import javafx.fxml.FXMLLoader;
@@ -59,7 +56,7 @@ public class GestionApplication extends Application {
         // On peut ensuite donner un titre à la fenêtre.
         stage.setTitle(CarnetClients.defaultCarnet().getNom());
 
-        controller.bind(carnetClients);
+        controller.setCarnet(carnetClients);
         controller.setStage(stage);
         controller.setScene(scene);
         // Enfin, on affiche la fenêtre.
