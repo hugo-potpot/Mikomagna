@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class NewCarnetsClientController {
 
-    private Scene scene;
+    private Scene mainscene;
 
     private Stage stage;
     @FXML
@@ -45,25 +45,27 @@ public class NewCarnetsClientController {
         this.stage = stage;
     }
 
-    public void setScene(Scene scene) {
-        this.scene = scene;
+    public void setMainscene(Scene mainscene) {
+        this.mainscene = mainscene;
     }
 
     public void bind(CarnetClients carnet){
         this.carnet = carnet;
     }
     @FXML
-    void initilalise(){
+    void initialize(){
         SelectGenre.setItems(FXCollections.observableArrayList(Genre.values()));
         SelectType.setItems(FXCollections.observableArrayList("Particulier", "Entreprise"));
     }
 
     @FXML
     void onActionAnnuler() {
-        stage.setScene(scene);
+        stage.setScene(mainscene);
     }
     @FXML
     void onActionValider() {
+
+
 
     }
 

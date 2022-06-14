@@ -57,7 +57,7 @@ public class CarnetsClientController {
         stage.setScene(addClient);
         NewCarnetsClientController controller = fxmlLoader.getController();
         controller.setStage(stage);
-        controller.setScene(scene);
+        controller.setMainscene(scene);
         controller.bind(carnet);
     }
 

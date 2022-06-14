@@ -61,6 +61,7 @@ public class GestionApplication extends Application {
 
         controller.bind(carnetClients);
         controller.setStage(stage);
+        controller.setScene(scene);
         // Enfin, on affiche la fenêtre.
         stage.show();
     }
