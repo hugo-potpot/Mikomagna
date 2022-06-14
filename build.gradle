@@ -9,6 +9,8 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.11'
 }
 
+compileJava.options.encoding = 'UTF-8'
+
 // Les dépôts d'où les dépendances doivent être téléchargées.
 repositories {
     mavenCentral()

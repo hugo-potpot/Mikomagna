@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Conducteurs {
     /**
@@ -18,6 +19,14 @@ public class Conducteurs {
      */
     public Conducteurs() {
         this.listConducteur = FXCollections.observableList(new LinkedList<>());
+    }
+
+    /**
+     * retourne la liste de conducteur
+     * @return listConducteur
+     */
+    public List<Conducteur> getListConducteur(){
+        return listConducteur;
     }
 
     /**

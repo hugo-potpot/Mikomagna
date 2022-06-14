@@ -2,6 +2,8 @@ package javafx.controller;
 
 import client.CarnetClients;
 import client.Client;
+import client.ClientEntreprise;
+import client.ClientParticulier;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,9 @@ public class CarnetsClientController {
     private Label adresse;
     @FXML
     private Label nom;
+
+    @FXML
+    private Label contact;
 
     @FXML
     private Label pointfidelite;
@@ -62,8 +67,16 @@ public class CarnetsClientController {
     }
 
     @FXML
-    void onActionModifier(ActionEvent event) {
+    void onActionModifier(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../new-master-detail.fxml"));
+        Parent viewContent = fxmlLoader.load();
 
+        Scene addClient = new Scene(viewContent);
+        stage.setScene(addClient);
+        NewCarnetsClientController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        controller.setMainscene(scene);
+        controller.bind(carnet);
     }
 
     @FXML
@@ -77,6 +90,18 @@ public class CarnetsClientController {
             nom.setText("Nom : " + n.getNom());
             adresse.setText("Adresse : " +n.getAdresse());
             pointfidelite.setText("Points de fidelite : "+Integer.toString(n.getPointsFidelite()));
+            if(n instanceof ClientParticulier client){
+                prenom.setVisible(true);
+                genre.setVisible(true);
+                prenom.setText("Prenom : " + client.getPrenom());
+                genre.setText("Genre : " + client.getGenre());
+                contact.setVisible(false);
+            } else if (n instanceof ClientEntreprise client) {
+                prenom.setVisible(false);
+                genre.setVisible(false);
+                contact.setVisible(true);
+                contact.setText("Contact : " + client.getContact());
+            }
         });
     }
     public void setMasterDetailController(CarnetClients carnet){

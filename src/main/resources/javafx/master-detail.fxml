@@ -39,7 +39,7 @@
                      <children>
                         <HBox prefHeight="42.0" prefWidth="297.0">
                            <children>
-                              <HBox prefHeight="18.0" prefWidth="298.0">
+                              <HBox prefHeight="49.0" prefWidth="298.0">
                                  <children>
                                     <Label fx:id="prenom" prefHeight="42.0" prefWidth="153.0" />
                                     <Label fx:id="genre" prefHeight="45.0" prefWidth="154.0" />
