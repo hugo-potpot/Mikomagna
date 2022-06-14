@@ -54,12 +54,13 @@ public class GestionApplication extends Application {
         // Ensuite, on la place dans une Scene...
 		Scene scene = new Scene(viewContent);
         // que l'on place elle-même dans la fenêtre.
-        controller.bind(carnetClients);
         stage.setScene(scene);
 
         // On peut ensuite donner un titre à la fenêtre.
         stage.setTitle(CarnetClients.defaultCarnet().getNom());
 
+        controller.bind(carnetClients);
+        controller.setStage(stage);
         // Enfin, on affiche la fenêtre.
         stage.show();
     }

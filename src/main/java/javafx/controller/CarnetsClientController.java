@@ -4,12 +4,22 @@ import client.CarnetClients;
 import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class CarnetsClientController {
+
+    private Stage stage;
+
+    private Scene scene;
     @FXML
     private Label genre;
     @FXML
@@ -30,9 +40,25 @@ public class CarnetsClientController {
 
     private CarnetClients carnet;
 
-    @FXML
-    void onActionAjouter(ActionEvent event) {
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
 
+    public void setStage(Stage stage){
+        this.stage= stage;
+    }
+
+    @FXML
+    void onActionAjouter(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../new-master-detail.fxml"));
+        Parent viewContent = fxmlLoader.load();
+
+        Scene addClient = new Scene(viewContent);
+        stage.setScene(addClient);
+        NewCarnetsClientController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        controller.setScene(scene);
+        controller.bind(carnet);
     }
 
     @FXML
