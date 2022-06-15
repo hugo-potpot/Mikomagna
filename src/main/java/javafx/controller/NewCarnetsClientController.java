@@ -80,22 +80,36 @@ public class NewCarnetsClientController {
     }
     @FXML
     void onActionValider() {
+        if(InNom.getText().equals("")){
+            erreur.setText("Rentrer nom");
+            return;
+        }
+        if (InAdresse.getText().equals("")){
+            erreur.setText("Rentrer adresse");
+            return;
+        }
+        if (InPoint.getText().equals("")){
+            erreur.setText("Rentrer point de fidélité en chiffre");
+            return;
+        }
         if(clienttmp == null){
-            if(InNom.getText().equals(""))
-                erreur.setText("Rentrer nom");
-            else if (InAdresse.getText().equals(""))
-                erreur.setText("Rentrer adresse");
-            else if (InPoint.getText().equals(""))
-                erreur.setText("Rentrer point de fidélité en chiffre");
             if(Title.getText().contains("Particulier")){
-                if(InPrenom.getText().equals(""))
+                if(InPrenom.getText().equals("")){
                     erreur.setText("Rentrer prénom");
+                    return;
+                }
+                if(SelectGenre.getSelectionModel().getSelectedItem() == null){
+                    erreur.setText("Rentrer GENRE");
+                    return;
+                }
                 carnet.ajouterClient(new ClientParticulier(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()
                         ,SelectGenre.getValue()));
             }
             else if (Title.getText().contains("Entreprise")){
-                if(InPrenom.getText().equals(""))
+                if(InPrenom.getText().equals("")){
                     erreur.setText("Rentrer Contact");
+                    return;
+                }
                 carnet.ajouterClient(new ClientEntreprise(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()));
             }
 
@@ -112,10 +126,22 @@ public class NewCarnetsClientController {
                     ((ClientParticulier) clienttmp).setGenre(SelectGenre.getValue());
                 if (!((ClientParticulier) clienttmp).getPrenom().equals(InPrenom.getText()))
                     ((ClientParticulier) clienttmp).setPrenom(InPrenom.getText());
+                if(InPrenom.getText().equals("")){
+                    erreur.setText("Rentrer prénom");
+                    return;
+                }
+                if(SelectGenre.getSelectionModel().getSelectedItem() == null){
+                    erreur.setText("Rentrer GENRE");
+                    return;
+                }
             }
             if(clienttmp instanceof ClientEntreprise){
                 if(!((ClientEntreprise) clienttmp).getContact().equals(InPrenom.getText()))
                     ((ClientEntreprise) clienttmp).setContact(InPrenom.getText());
+                if(InPrenom.getText().equals("")){
+                    erreur.setText("Rentrer Contact");
+                    return;
+                }
             }
         }
 
