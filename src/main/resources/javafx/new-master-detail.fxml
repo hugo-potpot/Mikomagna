@@ -95,5 +95,6 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Button>
+      <Label fx:id="erreur" prefHeight="22.0" prefWidth="386.0" textFill="RED" />
    </children>
 </VBox>

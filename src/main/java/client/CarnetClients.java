@@ -61,6 +61,16 @@ public class CarnetClients {
 				500, "René Tilleul"));
 		carnetClients.ajouterClient(new ClientParticulier("Tournesol", "123 rue des narcisses, 62300 Lens, France",
 				2000, "Jonquille", Genre.Femme));
+		carnetClients.ajouterClient(
+				new ClientParticulier("Cure", "30 rue des Tulipes, 62300 Lens, France", 0, "Hector", Genre.Homme));
+		carnetClients.ajouterClient(new ClientEntreprise("Peuplier and Co.",
+				"42 boulevard des Marguerites, 62300 Lens, France", 10, "Francis Chêne"));
+		carnetClients.ajouterClient(new ClientEntreprise("Charme and Co.", "22 impasse des Lilas, 62300 Lille, France",
+				500, "René Tilleul"));
+		carnetClients.ajouterClient(new ClientParticulier("Tournesol", "123 rue des narcisses, 62300 Lens, France",
+				2000, "Jonquille", Genre.Femme));
+		carnetClients.ajouterClient(new ClientEntreprise("Charme and Co.", "22 impasse des Lilas, 62300 Lille, France",
+				500, "René Tilleul"));
 		return carnetClients;
 	}
 
@@ -70,7 +80,7 @@ public class CarnetClients {
 	 * @return true si et seulement si le carnet de clients est plein.
 	 */
 	public boolean estPlein() {
-		return nbClients == MAX_CLIENTS;
+		return nbClients >= MAX_CLIENTS;
 	}
 
 	/**
@@ -105,8 +115,10 @@ public class CarnetClients {
 	 * @param client Un client (supposé non null).
 	 */
 	public void ajouterClient(Client client) {
-		if (!clients.contains(client))
+		if (!clients.contains(client)){
 			clients.add(client);
+			nbClients++;
+		}
 	}
 
 	/**
@@ -116,8 +128,10 @@ public class CarnetClients {
 	 * @param client Un client (supposé non null).
 	 */
 	public void supprimerClient(Client client) {
-		if(clients.contains(client))
+		if(clients.contains(client)){
 			clients.remove(client);
+			nbClients--;
+		}
 	}
 
 	/**

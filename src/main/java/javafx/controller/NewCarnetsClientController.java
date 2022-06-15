@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -37,6 +38,11 @@ public class NewCarnetsClientController {
     @FXML
     private Label labelPrename;
 
+    @FXML
+    private Label erreur;
+
+    private ListView<Client> listOption;
+
     private CarnetClients carnet;
     public void setStage(Stage stage){
         this.stage = stage;
@@ -49,7 +55,6 @@ public class NewCarnetsClientController {
     public void setCarnet(CarnetClients carnet){
         this.carnet = carnet;
     }
-
     @FXML
     void initialize(){
         SelectGenre.setItems(FXCollections.observableArrayList(Genre.values()));
@@ -75,12 +80,45 @@ public class NewCarnetsClientController {
     }
     @FXML
     void onActionValider() {
-        if(Title.getText().contains("Particulier")){
-            carnet.ajouterClient(new ClientParticulier(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()
-                    ,SelectGenre.getValue()));
+        if(clienttmp == null){
+            if(InNom.getText().equals(""))
+                erreur.setText("Rentrer nom");
+            else if (InAdresse.getText().equals(""))
+                erreur.setText("Rentrer adresse");
+            else if (InPoint.getText().equals(""))
+                erreur.setText("Rentrer point de fidélité en chiffre");
+            if(Title.getText().contains("Particulier")){
+                if(InPrenom.getText().equals(""))
+                    erreur.setText("Rentrer prénom");
+                carnet.ajouterClient(new ClientParticulier(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()
+                        ,SelectGenre.getValue()));
+            }
+            else if (Title.getText().contains("Entreprise")){
+                if(InPrenom.getText().equals(""))
+                    erreur.setText("Rentrer Contact");
+                carnet.ajouterClient(new ClientEntreprise(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()));
+            }
+
         }
-        else
-            carnet.ajouterClient(new ClientEntreprise(InNom.getText(),InAdresse.getText(),Integer.parseInt(InPoint.getText()),InPrenom.getText()));
+        if(clienttmp !=null) {
+            if(!clienttmp.getNom().equals(InNom.getText()))
+                clienttmp.setNom(InNom.getText());
+            if(!clienttmp.getAdresse().equals(InAdresse.getText()))
+                clienttmp.setAdresse(InAdresse.getText());
+            if(!Integer.valueOf(clienttmp.getPointsFidelite()).equals(Integer.valueOf(InPoint.getText())))
+                clienttmp.setAdresse(InPoint.getText());
+            if(clienttmp instanceof ClientParticulier){
+                if(!((ClientParticulier) clienttmp).getGenre().equals(SelectGenre.getValue()))
+                    ((ClientParticulier) clienttmp).setGenre(SelectGenre.getValue());
+                if (!((ClientParticulier) clienttmp).getPrenom().equals(InPrenom.getText()))
+                    ((ClientParticulier) clienttmp).setPrenom(InPrenom.getText());
+            }
+            if(clienttmp instanceof ClientEntreprise){
+                if(!((ClientEntreprise) clienttmp).getContact().equals(InPrenom.getText()))
+                    ((ClientEntreprise) clienttmp).setContact(InPrenom.getText());
+            }
+        }
+
         stage.setScene(mainscene);
     }
 
@@ -94,9 +132,11 @@ public class NewCarnetsClientController {
             SelectType.getSelectionModel().select("Entreprise");
             InPrenom.setText(((ClientEntreprise) client).getContact());
         }
-        else
+        else{
             SelectType.getSelectionModel().select("Particulier");
             InPrenom.setText(((ClientParticulier) client).getPrenom());
             SelectGenre.getSelectionModel().select(((ClientParticulier) client).getGenre());
+        }
+
     }
 }

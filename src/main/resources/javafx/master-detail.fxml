@@ -19,7 +19,7 @@
                <children>
                   <ButtonBar prefHeight="40.0">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#onActionAjouter" text="AJOUTER" />
+                        <Button fx:id="ajouter" mnemonicParsing="false" onAction="#onActionAjouter" text="AJOUTER" />
                       <Button mnemonicParsing="false" onAction="#onActionModifier" text="MODIFIER" />
                         <Button mnemonicParsing="false" onAction="#onActionSupprimer" text="SUPPRIMER" />
                     </buttons>
@@ -51,6 +51,7 @@
                         <Label fx:id="adresse" prefHeight="32.0" prefWidth="297.0" />
                         <Label fx:id="pointfidelite" prefHeight="32.0" prefWidth="297.0" />
                         <Label fx:id="contact" prefHeight="32.0" prefWidth="297.0" />
+                        <Label fx:id="type" prefHeight="32.0" prefWidth="297.0" />
                      </children>
                   </VBox>
                </center>

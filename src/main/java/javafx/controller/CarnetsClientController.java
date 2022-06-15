@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -22,6 +23,12 @@ public class CarnetsClientController {
     private Stage stage;
 
     private Scene scene;
+
+    @FXML
+    private Label type;
+
+    @FXML
+    private Button ajouter;
     @FXML
     private Label genre;
     @FXML
@@ -99,13 +106,19 @@ public class CarnetsClientController {
                 prenom.setText("Prenom : " + client.getPrenom());
                 genre.setText("Genre : " + client.getGenre());
                 contact.setVisible(false);
+                type.setText("Client : Particulier");
             } else if (n instanceof ClientEntreprise client) {
                 prenom.setVisible(false);
                 genre.setVisible(false);
                 contact.setVisible(true);
                 contact.setText("Contact : " + client.getContact());
+                type.setText("Client : Entreprise");
             }
         });
+        if(carnet.estPlein())
+            ajouter.setDisable(true);
+        else
+            ajouter.setDisable(false);
     }
     public void setMasterDetailController(CarnetClients carnet){
         listChoix.setItems(carnet.GetList());
