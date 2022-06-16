@@ -6,7 +6,7 @@ public class Fourgon extends Vehicule{
     /**
      * variable livreur d'un Objet Livreur
      */
-    private Livreur livreur;
+    public Livreur livreur;
     /**
      * variable poids_max
      */
@@ -40,6 +40,14 @@ public class Fourgon extends Vehicule{
      */
     public double getPoids_max() {
         return poids_max;
+    }
+
+    public void setPoids_max(double poids_max) {
+        this.poids_max = poids_max;
+    }
+
+    public void setVolume_max(double volume_max) {
+        this.volume_max = volume_max;
     }
 
     /**

@@ -20,15 +20,15 @@ public class TestGestionVehicules {
         Commercial c5 = new Commercial("Delcourt","Mattis","10", Permis.B);
 
         Fourgon f1 = new Fourgon("ABCC","Sandero","Dacia",60000,2008,800,50,l1);
-        Fourgon f2 = new Fourgon("EVGR","RS8","Audi",51506,2007,800,50,l1);
-        Fourgon f3 = new Fourgon("FAFF","Q7","Audi",60000,2018,800,50,l1);
-        Fourgon f4 = new Fourgon("FHEZ","Laguna","Renault",60000,2016,800,50,l1);
-        Fourgon f5 = new Fourgon("HJZD","RS7","Audi",60000,2020,800,50,l1);
+        Fourgon f2 = new Fourgon("EVGR","RS8","Audi",51506,2007,800,50,l2);
+        Fourgon f3 = new Fourgon("FAFF","Q7","Audi",60000,2018,800,50,l3);
+        Fourgon f4 = new Fourgon("FHEZ","Laguna","Renault",60000,2016,800,50,l4);
+        Fourgon f5 = new Fourgon("HJZD","RS7","Audi",60000,2020,800,50,l5);
         Voiture v1 = new Voiture("AZCE","A1","Audi",78000,2015,c2);
-        Voiture v2 = new Voiture("BFEG","A2","Audi",78000,2016,c2);
-        Voiture v3 = new Voiture("NCXJ","A3","Audi",78000,2017,c2);
-        Voiture v4 = new Voiture("ZEJF","A4","Audi",78000,2018,c2);
-        Voiture v5 = new Voiture("FAKP","A5","Audi",78000,2019,c2);
+        Voiture v2 = new Voiture("BFEG","A2","Audi",78000,2016,c3);
+        Voiture v3 = new Voiture("NCXJ","A3","Audi",78000,2017,c4);
+        Voiture v4 = new Voiture("ZEJF","A4","Audi",78000,2018,c5);
+        Voiture v5 = new Voiture("FAKP","A5","Audi",78000,2019,c1);
 
         FlotteVehicules flotte = new FlotteVehicules();
         Conducteurs list = new Conducteurs();

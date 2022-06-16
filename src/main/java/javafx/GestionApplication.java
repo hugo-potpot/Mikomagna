@@ -19,6 +19,7 @@ package javafx;
 import client.CarnetClients;
 import javafx.application.Application;
 import javafx.controller.CarnetsClientController;
+import javafx.controller.MenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,21 +43,18 @@ public class GestionApplication extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        CarnetClients carnetClients = CarnetClients.defaultCarnet();
+        //CarnetClients carnetClients = CarnetClients.defaultCarnet();
         // Il faut d'abord récupérer la description de la vue (au format FXML).
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("master-detail.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-master-detail.fxml"));
         Parent viewContent = fxmlLoader.load();
-        CarnetsClientController controller = fxmlLoader.getController();
-        controller.setMasterDetailController(carnetClients);
+        MenuController controller = fxmlLoader.getController();
         // Ensuite, on la place dans une Scene...
 		Scene scene = new Scene(viewContent);
         // que l'on place elle-même dans la fenêtre.
         stage.setScene(scene);
-
         // On peut ensuite donner un titre à la fenêtre.
         stage.setTitle(CarnetClients.defaultCarnet().getNom());
-
-        controller.setCarnet(carnetClients);
+        
         controller.setStage(stage);
         controller.setScene(scene);
         // Enfin, on affiche la fenêtre.

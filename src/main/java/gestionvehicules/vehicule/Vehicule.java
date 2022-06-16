@@ -30,7 +30,7 @@ public abstract class Vehicule {
      * @param kilometrage
      * @param mise_circulation
      */
-    public Vehicule(String num_immatriculation, String modele, String marque, double kilometrage, int mise_circulation) {
+    protected Vehicule(String num_immatriculation, String modele, String marque, double kilometrage, int mise_circulation) {
         this.num_immatriculation = num_immatriculation;
         this.modele = modele;
         this.marque = marque;
@@ -44,6 +44,22 @@ public abstract class Vehicule {
      */
     public String getNum_immatriculation() {
         return num_immatriculation;
+    }
+
+    public void setNum_immatriculation(String num_immatriculation) {
+        this.num_immatriculation = num_immatriculation;
+    }
+
+    public void setModele(String modele) {
+        this.modele = modele;
+    }
+
+    public void setMarque(String marque) {
+        this.marque = marque;
+    }
+
+    public void setMise_circulation(int mise_circulation) {
+        this.mise_circulation = mise_circulation;
     }
 
     /**
