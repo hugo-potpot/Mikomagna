@@ -1,10 +1,7 @@
 package javafx.controller;
 
 import client.*;
-import gestionvehicules.conducteur.Commercial;
-import gestionvehicules.conducteur.Conducteur;
-import gestionvehicules.conducteur.Conducteurs;
-import gestionvehicules.conducteur.Livreur;
+import gestionvehicules.conducteur.*;
 import gestionvehicules.vehicule.*;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -16,6 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class NewVehiculesController {
 
@@ -62,9 +61,10 @@ public class NewVehiculesController {
     @FXML
     private ComboBox<Conducteur> selectConducteur;
 
+    private Conducteur conducteur;
     private Conducteurs conducteurs;
 
-    FlotteVehicules flotteVehicules;
+    private FlotteVehicules flotteVehicules;
 
     public void setStage(Stage stage){
         this.stage = stage;
@@ -78,17 +78,28 @@ public class NewVehiculesController {
         this.flotteVehicules = flotteVehicules;
     }
 
+    public void setConducteurs(Conducteurs conducteurs){
+        this.conducteurs = conducteurs;
+        selectConducteur.setItems(FXCollections.observableArrayList(conducteurs.getListConducteur()));
+    }
+    public void setConducteur(Conducteur conducteur){
+        this.conducteur = conducteur;
+    }
+
     @FXML
     void initialize(){
-        selectConducteur.setItems(FXCollections.observableArrayList(conducteurs.getListConducteur()));
         SelectType.setItems(FXCollections.observableArrayList("Fourgon", "Voiture"));
         SelectType.getSelectionModel().selectedItemProperty().addListener((o,p,n) -> {
-            Title.setText("Véhicule"+n);
+            Title.setText("Véhicule "+n);
             if(n.equals("Fourgon")){
                 vboxFourgon.setVisible(true);
+                selectConducteur.setItems(FXCollections.observableArrayList(conducteurs.onlyLivreur()));
+
             }
             else{
                 vboxFourgon.setVisible(false);
+                selectConducteur.setItems(FXCollections.observableArrayList(conducteurs.onlyCommercial()));
+
             }
         });
     }

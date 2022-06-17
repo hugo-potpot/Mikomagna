@@ -36,6 +36,6 @@ public class Livreur extends Conducteur {
 
     @Override
     public String toString() {
-        return "[Livreur]\nNombres Heures : " + nbHeures +"\n"+ super.toString();
+        return "[Livreur] | Nombres Heures : " + nbHeures +" | "+ super.toString();
     }
 }

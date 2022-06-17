@@ -17,6 +17,7 @@
                <children>
                   <ButtonBar prefHeight="40.0">
                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#onActionRetour" text="←" />
                         <Button fx:id="ajouter" mnemonicParsing="false" onAction="#onActionAjouter" text="AJOUTER" />
                       <Button mnemonicParsing="false" onAction="#onActionModifier" text="MODIFIER" />
                         <Button mnemonicParsing="false" onAction="#onActionSupprimer" text="SUPPRIMER" />

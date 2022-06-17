@@ -78,8 +78,19 @@ public class CarnetsClientController {
         }
 
     }
+
     @FXML
-    void onActionAjouter() throws IOException {
+    void onActionRetour() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../menu-master-detail.fxml"));
+        Parent viewContent = fxmlLoader.load();
+        MenuController controller = fxmlLoader.getController();
+        Scene scene = new Scene(viewContent);
+        stage.setScene(scene);
+        controller.setStage(stage);
+        controller.setScene(scene);
+    }
+    @FXML
+    void onActionAjouter(ActionEvent event) throws IOException {
         startEditor(null);
     }
 

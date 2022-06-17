@@ -41,8 +41,6 @@ public class NewCarnetsClientController {
     @FXML
     private Label erreur;
 
-    private ListView<Client> listOption;
-
     private CarnetClients carnet;
     public void setStage(Stage stage){
         this.stage = stage;

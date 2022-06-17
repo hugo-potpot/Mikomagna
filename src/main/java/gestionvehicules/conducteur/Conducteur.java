@@ -81,9 +81,9 @@ public abstract class Conducteur{
      */
     @Override
     public String toString() {
-        return  "nom = " + nom + '\n' +
-                "prenom = " + prenom + '\n' +
-                "num_permis = " + num_permis + '\n' +
-                "type= " + type;
+        return  " nom = " + nom + " | " +
+                " prenom = " + prenom + " | " +
+                " num_permis = " + num_permis + " | " +
+                " type= " + type;
     }
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.CarnetsClientController">
+<SplitPane dividerPositions="0.6122994652406416" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controller.CarnetsClientController">
    <items>
       <SplitPane dividerPositions="0.9" orientation="VERTICAL">
          <items>
@@ -19,9 +19,10 @@
                <children>
                   <ButtonBar prefHeight="40.0">
                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#onActionRetour" text="←" />
                         <Button fx:id="ajouter" mnemonicParsing="false" onAction="#onActionAjouter" text="AJOUTER" />
-                      <Button mnemonicParsing="false" onAction="#onActionModifier" text="MODIFIER" />
                         <Button mnemonicParsing="false" onAction="#onActionSupprimer" text="SUPPRIMER" />
+                      <Button mnemonicParsing="false" onAction="#onActionModifier" text="MODIFIER" />
                     </buttons>
                      <padding>
                         <Insets right="10.0" />

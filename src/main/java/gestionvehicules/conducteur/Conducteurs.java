@@ -21,6 +21,21 @@ public class Conducteurs {
         this.listConducteur = FXCollections.observableList(new LinkedList<>());
     }
 
+    public static Conducteurs defaultConducteurs() throws ExceptionConducteurDejaPresent {
+        Conducteurs conducteurs = new Conducteurs();
+        conducteurs.addConducteur(new Livreur("Potier","Hugo","1", Permis.A));
+        conducteurs.addConducteur(new Livreur("Joly","Yoann","2", Permis.A));
+        conducteurs.addConducteur(new Livreur("Riquart","Antonin","3", Permis.A));
+        conducteurs.addConducteur(new Livreur("Guyot","Lucas","4", Permis.A));
+        conducteurs.addConducteur(new Livreur("Mahieux","Clement","5", Permis.A));
+        conducteurs.addConducteur(new Commercial("Grasso","Antoine","6", Permis.B));
+        conducteurs.addConducteur(new Commercial("Hochard","Lucas","7", Permis.B));
+        conducteurs.addConducteur(new Commercial("Hochard","Quentin","8", Permis.B));
+        conducteurs.addConducteur(new Commercial("Khounviseth","Max","9", Permis.B));
+        conducteurs.addConducteur(new Commercial("Delcourt","Mattis","10", Permis.B));
+        return conducteurs;
+    }
+
     /**
      * retourne la liste de conducteur
      * @return listConducteur

@@ -40,6 +40,6 @@ public class Commercial extends Conducteur {
      * @return info conducteur + nombre de visite
      */
     public String toString() {
-        return "[Commercial]\nNombres Visites : " + nbVisites+ "\n"+ super.toString();
+        return "[Commercial] | Nombres Visites : " + nbVisites+ " | "+ super.toString();
     }
 }

@@ -4,6 +4,9 @@ import client.CarnetClients;
 import client.Client;
 import client.ClientEntreprise;
 import client.ClientParticulier;
+import gestionvehicules.conducteur.Conducteur;
+import gestionvehicules.conducteur.Conducteurs;
+import gestionvehicules.conducteur.ExceptionConducteurDejaPresent;
 import gestionvehicules.vehicule.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,6 +63,7 @@ public class VehiculesController {
     @FXML
     private Label volume_max;
 
+    Conducteurs conducteurs;
     FlotteVehicules flotteVehicules;
 
     public void setScene(Scene scene) {
@@ -70,9 +74,9 @@ public class VehiculesController {
         this.stage= stage;
     }
 
-    void startEditor(Vehicule vehicule) throws IOException {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../newVehicules-master-detail.fxml"));
+    void startEditor(Vehicule vehicule) throws IOException, ExceptionConducteurDejaPresent {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../newvehicules-master-detail.fxml"));
             Parent viewContent = fxmlLoader.load();
 
             Scene addVehicule = new Scene(viewContent);
@@ -81,19 +85,28 @@ public class VehiculesController {
             controller.setStage(stage);
             controller.setMainscene(scene);
             if(vehicule != null) controller.setVehicule(vehicule);
+            controller.setConducteurs(Conducteurs.defaultConducteurs());
             controller.setFlotteVehicules(flotteVehicules);
-        }catch (IOException e){
-            System.err.println(e.getMessage());
-        }
+            stage.show();
+
 
     }
     @FXML
-    void onActionAjouter() throws IOException {
+    void onActionAjouter() throws IOException, ExceptionConducteurDejaPresent {
         startEditor(null);
     }
-
     @FXML
-    void onActionModifier(ActionEvent event) throws IOException{
+    void onActionRetour() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../menu-master-detail.fxml"));
+        Parent viewContent = fxmlLoader.load();
+        MenuController controller = fxmlLoader.getController();
+        Scene scene = new Scene(viewContent);
+        stage.setScene(scene);
+        controller.setStage(stage);
+        controller.setScene(scene);
+    }
+    @FXML
+    void onActionModifier(ActionEvent event) throws IOException, ExceptionConducteurDejaPresent {
         startEditor(listChoix.getSelectionModel().getSelectedItem());
     }
 
